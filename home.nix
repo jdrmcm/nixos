@@ -22,6 +22,7 @@
 				#PROMPT="%F{172}%n%f in %F{106}%d%f %F{172}$%f "
 				fastfetch
 				eval "$(zoxide init zsh)"
+				EDITOR="nvim"
 			'';
 		};
 
@@ -33,6 +34,7 @@
 				vim.opt.shiftwidth=2
 				vim.opt.expandtab=false
 			'';
+			defaultEditor = true;
 		};
 
 		bash = {
@@ -68,6 +70,16 @@
 		zsh.oh-my-zsh = {
 			enable = true;
 			theme = "robbyrussell";
+		};
+		
+		yazi = {
+			enable = true;
+			enableZshIntegration = true;
+			settings = {
+				mgr = {
+					show_hidden = true;
+				};
+			};
 		};
 
 	};

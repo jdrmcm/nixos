@@ -77,7 +77,6 @@ in
   vesktop
   bemenu
   xdg-utils
-  yazi
   btop
   hyprshot
   # wget
