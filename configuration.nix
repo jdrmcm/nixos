@@ -50,7 +50,8 @@ in
     layout = "us";
     variant = "";
   };
-  
+	
+	services.tailscale.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jdrmcm = {
@@ -118,7 +119,6 @@ in
 		jack.enable = false;
 	};
 	pulseaudio.enable = false;
-	tailscale.enable = true;
   };
 
   # Enable the OpenSSH daemon.

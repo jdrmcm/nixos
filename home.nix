@@ -14,14 +14,14 @@
 
 			shellAliases = {
 				nrs = "sudo nixos-rebuild switch";
-				z = "zoxide";
 				tv="nix-search-tv print | fzf --preview 'nix-search-tv preview {}' --scheme history";
 			};
 			
 			initContent = ''
 				setopt PROMPT_SUBST
-				PROMPT="%F{172}%n%f in %F{106}%d%f %F{172}$%f "
+				#PROMPT="%F{172}%n%f in %F{106}%d%f %F{172}$%f "
 				fastfetch
+				eval "$(zoxide init zsh)"
 			'';
 		};
 
@@ -64,14 +64,20 @@
 				window_padding_width 4
 			'';
 		};
-		
-	};
 
+		zsh.oh-my-zsh = {
+			enable = true;
+			theme = "robbyrussell";
+		};
+
+	};
+	
 	home.packages = with pkgs; [
 		bat
 		nix-search-tv
 		fzf
 		prismlauncher
 		git
+		r2modman
 	];
 }
