@@ -52,7 +52,7 @@ in
   };
 	
 	services.tailscale.enable = true;
-
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jdrmcm = {
     isNormalUser = true;
@@ -79,9 +79,13 @@ in
   xdg-utils
   btop
   hyprshot
+	sunshine
+	moonlight-qt
   # wget
   ];
   
+	services.wivrn.enable = true;
+
   fonts.packages = with pkgs; [nerd-fonts.jetbrains-mono];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -100,11 +104,11 @@ in
 	steam = {
 		enable = true;
 	};
-	hyprland = {
-		enable = true;
-	};
+
+	hyprland.enable = true;
+	
   };
-  
+
   # List services that you want to enable:
   hardware.bluetooth.enable = true;
 
@@ -124,8 +128,8 @@ in
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 47984 47989 48010 9757 ];
+  networking.firewall.allowedUDPPorts = [ 47998 47999 48000 48002 48010 9757 5353 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
@@ -137,6 +141,8 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
   
+	hardware.wooting.enable = true;
+
   hardware.graphics = {
 	enable = true;
   };
@@ -148,6 +154,4 @@ in
 
 	package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-  
-  services.displayManager.defaultSession = "hyprland";
 }

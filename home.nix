@@ -81,9 +81,42 @@
 				};
 			};
 		};
-
 	};
 	
+	services = {
+		hypridle = {
+			enable = true;
+			settings = {
+				general = {
+					after_sleep_cmd = "hyprctl dispatch dpms on";
+				};
+				listener = [
+					{
+						timeout = 300;
+						on-timeout = "brightnessctl -s set 10";
+						on-resume = "brightnessctl -r";
+					}
+					{
+						timeout = 330;
+						on-timeout = "loginctl lock-session";
+					}
+					{
+						timeout = 350;
+						on-timeout = "hyprctl dispatch dpms off";
+						on-resume = "hyprctl dispatch dpms on";
+					}
+				];
+			};
+		};
+	};
+
+	wayland.windowManager.hyprland = {
+		enable = true;
+		extraConfig = ''
+			${builtins.readFile ./config/hypr/hyprland.conf}
+		'';
+	};
+
 	home.packages = with pkgs; [
 		bat
 		nix-search-tv
@@ -91,5 +124,19 @@
 		prismlauncher
 		git
 		r2modman
+		ani-cli
+		brightnessctl
+		libreoffice
+		unzip
+		zip
+		filezilla
+		claude-code
+		lm_sensors
+		limo
+		protonup-qt
+		wootility
+		unrar
+		protontricks
+		nix-ld
 	];
 }
