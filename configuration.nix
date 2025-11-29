@@ -81,6 +81,7 @@ in
   hyprshot
 	sunshine
 	moonlight-qt
+	SDL2
   # wget
   ];
   
@@ -111,6 +112,7 @@ in
 
   # List services that you want to enable:
   hardware.bluetooth.enable = true;
+  hardware.steam-hardware.enable = true;
 
   services = {
 	pipewire = {

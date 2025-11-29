@@ -137,6 +137,8 @@
 		wootility
 		unrar
 		protontricks
-		nix-ld
+		steam-run
+		lutris
+		lunar-client
 	];
 }
