@@ -1,4 +1,4 @@
-{config, pkgs, inputs, ...}:
+{config, pkgs, ...}:
 
 {
 	home.username = "jdrmcm";
@@ -141,7 +141,5 @@
 		lutris
 		lunar-client
 		cabextract
-		inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.star-citizen
-		winetricks
 	];
 }
