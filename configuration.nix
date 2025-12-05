@@ -21,11 +21,6 @@ in
   # Bootloader.
   boot.loader.limine = {
 	enable = true;
-	extraEntries = ''
-		:CachyOS
-		PROTOCOL=chainloader
-		PATH=uuid://288eddf1-922e-4ce6-9027-68c163fc698f/boot/EFI/Limine/limine_x64.efi
-	'';
   };
   boot.loader.efi.canTouchEfiVariables = true;
 
