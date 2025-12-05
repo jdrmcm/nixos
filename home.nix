@@ -140,5 +140,6 @@
 		steam-run
 		lutris
 		lunar-client
+		gh
 	];
 }
