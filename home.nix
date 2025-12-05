@@ -137,13 +137,5 @@
 		wootility
 		unrar
 		protontricks
-		steam-run
-		lutris
-		lunar-client
-		cabextract
-		inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.star-citizen
-		winetricks
-		discord
-		wget
 	];
 }
