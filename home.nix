@@ -140,6 +140,5 @@
 		steam-run
 		lutris
 		lunar-client
-		cabextract
 	];
 }

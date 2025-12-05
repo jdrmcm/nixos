@@ -2,13 +2,21 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
-
+{ config, pkgs, ... }:
+let
+	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
+in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      (import "${home-manager}/nixos")
     ];
+  
+  home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
+  home-manager.backupFileExtension = "backup";
+  home-manager.users.jdrmcm = import ./home.nix;
 
   # Bootloader.
   boot.loader.limine = {
@@ -20,12 +28,6 @@
 	'';
   };
   boot.loader.efi.canTouchEfiVariables = true;
-	# NixOS configuration for Star Citizen requirements
-
-	boot.kernel.sysctl = {
-		"vm.max_map_count" = 16777216;
-		"fs.file-max" = 524288;
-	};
 
   networking.hostName = "jadron-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -59,14 +61,6 @@
     packages = with pkgs; [];
   };
 
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-	
-	nix.settings = {
-    substituters = ["https://nix-gaming.cachix.org"];
-    trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
-  };
-  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   
