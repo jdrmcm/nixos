@@ -5,6 +5,7 @@
 { config, pkgs, ... }:
 let
 	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
+	nix-gaming = import (builtins.fetchTarball "https://github.com/fufexan/nix-gaming/archive/master.tar.gz");
 in
 {
   imports =
@@ -12,11 +13,18 @@ in
       ./hardware-configuration.nix
       (import "${home-manager}/nixos")
     ];
-  
+
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "backup";
+  home-manager.extraSpecialArgs = { inherit nix-gaming; };
   home-manager.users.jdrmcm = import ./home.nix;
+
+# NixOS configuration for Star Citizen requirements
+boot.kernel.sysctl = {
+  "vm.max_map_count" = 16777216;
+  "fs.file-max" = 524288;
+};
 
   # Bootloader.
   boot.loader.limine = {
@@ -58,6 +66,11 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  
+  nix.settings = {
+    substituters = ["https://nix-gaming.cachix.org"];
+    trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
+  };
   
   environment.sessionVariables = {
 	XDG_PICTURES_DIR="${config.users.users.jdrmcm.home}/Pictures";

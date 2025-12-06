@@ -1,4 +1,4 @@
-{config, pkgs, ...}:
+{config, pkgs, nix-gaming, ...}:
 
 {
 	home.username = "jdrmcm";
@@ -141,5 +141,7 @@
 		lutris
 		lunar-client
 		gh
+		mpv
+		nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.star-citizen
 	];
 }
