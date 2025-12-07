@@ -1,24 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, ... }:
-let
-	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
-	nix-gaming = import (builtins.fetchTarball "https://github.com/fufexan/nix-gaming/archive/master.tar.gz");
-in
+{ config, pkgs, inputs, ... }:
+
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      (import "${home-manager}/nixos")
+      # hardware-configuration.nix is imported in flake.nix
     ];
-
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
-  home-manager.backupFileExtension = "backup";
-  home-manager.extraSpecialArgs = { inherit nix-gaming; };
-  home-manager.users.jdrmcm = import ./home.nix;
 
 # NixOS configuration for Star Citizen requirements
 boot.kernel.sysctl = {
@@ -68,10 +58,10 @@ boot.kernel.sysctl = {
   nixpkgs.config.allowUnfree = true;
   
   nix.settings = {
-    substituters = ["https://nix-gaming.cachix.org"];
-    trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
-  };
-  
+        substituters = ["https://nix-citizen.cachix.org"];
+        trusted-public-keys = ["nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="];
+    };
+	
   environment.sessionVariables = {
 	XDG_PICTURES_DIR="${config.users.users.jdrmcm.home}/Pictures";
   };

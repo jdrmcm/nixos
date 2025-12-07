@@ -1,4 +1,4 @@
-{config, pkgs, nix-gaming, ...}:
+{config, pkgs, inputs, ...}:
 
 {
 	home.username = "jdrmcm";
@@ -116,6 +116,10 @@
 			${builtins.readFile ./config/hypr/hyprland.conf}
 		'';
 	};
+	
+	nix = {
+		settings.experimental-features = ["nix-command" "flakes"];
+	};
 
 	home.packages = with pkgs; [
 		bat
@@ -142,6 +146,9 @@
 		lunar-client
 		gh
 		mpv
-		nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.star-citizen
+		vulkan-tools
+		vulkan-loader
+		vulkan-validation-layers
+		inputs.nix-citizen.packages.${stdenv.hostPlatform.system}.star-citizen
 	];
 }
