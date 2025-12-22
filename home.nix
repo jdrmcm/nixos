@@ -150,5 +150,8 @@
 		vulkan-loader
 		vulkan-validation-layers
 		inputs.nix-citizen.packages.${stdenv.hostPlatform.system}.star-citizen
+		virt-viewer
+		wget
+		godot
 	];
 }

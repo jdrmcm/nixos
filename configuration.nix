@@ -45,6 +45,9 @@ boot.kernel.sysctl = {
   };
 	
 	services.tailscale.enable = true;
+	services.tailscale.extraSetFlags = [
+		"--ssh"
+	];
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jdrmcm = {
