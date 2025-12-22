@@ -153,5 +153,6 @@
 		virt-viewer
 		wget
 		godot
+		vintagestory
 	];
 }
