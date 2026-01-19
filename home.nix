@@ -154,5 +154,14 @@
 		wget
 		godot
 		vintagestory
+		blockbench
+		jetbrains.idea-oss
+		qbittorrent
+		rustup
+		obsidian
+		gcc
+		jetbrains.rust-rover
+		wine
+		wlr-randr
 	];
 }

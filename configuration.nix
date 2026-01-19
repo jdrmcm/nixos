@@ -16,6 +16,12 @@ boot.kernel.sysctl = {
   "fs.file-max" = 524288;
 };
 
+boot.extraModulePackages = with config.boot.kernelPackages; [
+	nct6687d
+];
+
+boot.kernelModules = [ "coretemp" "nct6683" ];
+
   # Bootloader.
   boot.loader.limine = {
 	enable = true;
@@ -48,6 +54,7 @@ boot.kernel.sysctl = {
 	services.tailscale.extraSetFlags = [
 		"--ssh"
 	];
+	services.tailscale.useRoutingFeatures = "both";
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jdrmcm = {
@@ -68,6 +75,8 @@ boot.kernel.sysctl = {
   environment.sessionVariables = {
 	XDG_PICTURES_DIR="${config.users.users.jdrmcm.home}/Pictures";
   };
+	
+	programs.mango.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -83,6 +92,9 @@ boot.kernel.sysctl = {
 	sunshine
 	moonlight-qt
 	SDL2
+	lm_sensors
+	liquidctl
+	openlinkhub
   # wget
   ];
   
@@ -108,6 +120,8 @@ boot.kernel.sysctl = {
 	};
 
 	hyprland.enable = true;
+
+	coolercontrol.enable = true;
 	
   };
 
@@ -157,4 +171,6 @@ boot.kernel.sysctl = {
 
 	package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+	services.flatpak.enable = true;
 }

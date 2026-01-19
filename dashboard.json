@@ -1,0 +1,12 @@
+{
+    "showCpu": true,
+    "showDisk": true,
+    "showGpu": true,
+    "showDevices": false,
+    "verticalUi": false,
+    "celsius": true,
+    "showLabels": true,
+    "showBattery": false,
+    "languageCode": "en_US",
+    "deviceOrder": {}
+}

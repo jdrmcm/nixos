@@ -10,9 +10,14 @@
     };
     
     nix-citizen.url = "github:LovingMelody/nix-citizen";
+
+		mango = {
+			url = "github:DreamMaoMao/mango";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-citizen, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-citizen, mango, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -33,6 +38,11 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.jdrmcm = import ./home.nix;
           }
+					
+					mango.nixosModules.mango
+					{
+						programs.mango.enable = true;
+					}
         ];
       };
     };
