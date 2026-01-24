@@ -173,4 +173,6 @@ boot.kernelModules = [ "coretemp" "nct6683" ];
   };
 
 	services.flatpak.enable = true;
+
+	programs.nix-ld.enable = true;
 }

@@ -163,5 +163,8 @@
 		jetbrains.rust-rover
 		wine
 		wlr-randr
+		rimsort
+		python3
+		pylint
 	];
 }
